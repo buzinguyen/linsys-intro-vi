@@ -1,0 +1,38 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: I. Linear algebra
+    chapters:
+    - file: chap1-vector-space/00-intro-eng
+      sections:
+      - file: chap1-vector-space/01-functions-eng
+      - file: chap1-vector-space/02-fields-and-vector-spaces-eng
+      - file: chap1-vector-space/03-subspaces-and-bases-eng
+      - file: chap1-vector-space/04-linear-maps-eng
+      - file: chap1-vector-space/05-matrix-rep-of-linear-map-eng
+      - file: chap1-vector-space/06-change-of-basis-eng
+      - file: chap1-vector-space/00-exercise-eng
+      - file: chap1-vector-space/00-solution-eng
+    - file: chap2-vector-matrix-operation/00-intro-eng
+      sections:
+      - file: chap2-vector-matrix-operation/07-norms-eng
+      - file: chap2-vector-matrix-operation/08-induced-norms-eng
+      - file: chap2-vector-matrix-operation/09-inner-products-eng
+      - file: chap2-vector-matrix-operation/10-adjoints-eng
+      - file: chap2-vector-matrix-operation/11-hermitian-matrices-eng
+      - file: chap2-vector-matrix-operation/12-singular-value-decomposition-eng
+      - file: chap2-vector-matrix-operation/00-exercise-eng
+      - file: chap2-vector-matrix-operation/00-solution-eng
+  - caption: II. Linear systems
+    chapters:
+    - file: chap3-dynamical-systems/00-intro-eng
+      sections:
+      - file: chap3-dynamical-systems/13-ode-theory-eng
+      - file: chap3-dynamical-systems/14-Bellman-Gronwall-lemma-eng
+  - caption: Notes
+    chapters:
+    - file: notes/feedback-control-eng
+    - file: notes/lyapunov-stability-eng
