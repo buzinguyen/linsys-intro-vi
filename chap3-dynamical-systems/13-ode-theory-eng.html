@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13. Fundamental Theorum of ODEs &#8212; Introduction to Linear Systems</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap3-dynamical-systems/13-ode-theory-eng';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bellman-Gronwall lemma" href="14-Bellman-Gronwall-lemma-eng.html" />
+    <link rel="prev" title="Chapter 3: Dynamical Systems" href="00-intro-eng.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Hệ thống tuyến tính cơ bản
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Linear algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chap1-vector-space/00-intro-eng.html">Chapter 1: Vector Space</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/01-functions-eng.html">1. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/02-fields-and-vector-spaces-eng.html">2. Fields and Vector Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/03-subspaces-and-bases-eng.html">3. Subspaces and Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/04-linear-maps-eng.html">4. Linear Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/05-matrix-rep-of-linear-map-eng.html">5. Matrix Representation of Linear Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/06-change-of-basis-eng.html">6. Change of Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/00-exercise-eng.html">Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap1-vector-space/00-solution-eng.html">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chap2-vector-matrix-operation/00-intro-eng.html">Chapter 2: Vector and Matrix Operation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/07-norms-eng.html">7. Norms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/08-induced-norms-eng.html">8. Induced Norms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/09-inner-products-eng.html">9. Inner Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/10-adjoints-eng.html">10. Adjoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/11-hermitian-matrices-eng.html">11. Hermitian Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/12-singular-value-decomposition-eng.html">12. Singular Value Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/00-exercise-eng.html">Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chap2-vector-matrix-operation/00-solution-eng.html">Solution</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Linear systems</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="00-intro-eng.html">Chapter 3: Dynamical Systems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">13. Fundamental Theorum of ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-Bellman-Gronwall-lemma-eng.html">Bellman-Gronwall lemma</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notes/feedback-control-eng.html">Notes on feedback control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/lyapunov-stability-eng.html">Notes on Lyapunov stability</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/buzinguyen/linsys-intro" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/buzinguyen/linsys-intro/issues/new?title=Issue%20on%20page%20%2Fchap3-dynamical-systems/13-ode-theory-eng.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap3-dynamical-systems/13-ode-theory-eng.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>13. Fundamental Theorum of ODEs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-theorem">Fundamental theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuity-c-0">Continuity (<span class="math notranslate nohighlight">\(C^0\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piecewise-continuity-pc">Piecewise continuity (<span class="math notranslate nohighlight">\(PC\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lipschitz-continuity-lc">Lipschitz continuity (<span class="math notranslate nohighlight">\(LC\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relations-between-different-types-of-continuity">Relations between different types of continuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#candidate-lipschitz-function-k-cdot">Candidate Lipschitz function <span class="math notranslate nohighlight">\(K(\cdot)\)</span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="fundamental-theorum-of-odes">
+<h1>13. Fundamental Theorum of ODEs<a class="headerlink" href="#fundamental-theorum-of-odes" title="Permalink to this headline">#</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#fundamental-theorem" id="id1">Fundamental theorem</a></p></li>
+<li><p><a class="reference internal" href="#continuity-c-0" id="id2">Continuity (<span class="math notranslate nohighlight">\(C^0\)</span>)</a></p></li>
+<li><p><a class="reference internal" href="#piecewise-continuity-pc" id="id3">Piecewise continuity (<span class="math notranslate nohighlight">\(PC\)</span>)</a></p></li>
+<li><p><a class="reference internal" href="#lipschitz-continuity-lc" id="id4">Lipschitz continuity (<span class="math notranslate nohighlight">\(LC\)</span>)</a></p></li>
+<li><p><a class="reference internal" href="#relations-between-different-types-of-continuity" id="id5">Relations between different types of continuity</a></p></li>
+<li><p><a class="reference internal" href="#candidate-lipschitz-function-k-cdot" id="id6">Candidate Lipschitz function <span class="math notranslate nohighlight">\(K(\cdot)\)</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="fundamental-theorem">
+<h2><a class="toc-backref" href="#id1">Fundamental theorem</a><a class="headerlink" href="#fundamental-theorem" title="Permalink to this headline">#</a></h2>
+<p>In this module we will discuss properties of ordinary differential equations (ODE) that guarantee that ODE has a <strong>unique solution for a given initial condition</strong>.</p>
+<p>Let us have <span class="math notranslate nohighlight">\(\dot{x} = f(x, t)\)</span>, <span class="math notranslate nohighlight">\(x(t) \in \mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(f(\cdot, \cdot) = \mathbb{R}^n \times \mathbb{R}_+ \rightarrow \mathbb{R}^n\)</span>. Let us have the initial condition <span class="math notranslate nohighlight">\(x(t_0) = x_0\)</span>. The fundamental theorem asks under what conditions does the solution to the ODE exists, with the solution means a trajectory, i.e. a function <span class="math notranslate nohighlight">\(x\)</span> as a function of time, <span class="math notranslate nohighlight">\(x(t)\)</span> that satisfies the differential equation. This means that if you take the derivative of that function with respect to time, we receive <span class="math notranslate nohighlight">\(f(x, t)\)</span>.</p>
+<div class="important admonition">
+<p class="admonition-title">Theorem: Fundamental theorem (Existence and Uniqueness)</p>
+<p>If <span class="math notranslate nohighlight">\(f(x, \cdot): \mathbb{R}_+ \rightarrow \mathbb{R}^n, \forall x \in G \subseteq \mathbb{R}^n\)</span> is <strong>piecewise continuous</strong> and <span class="math notranslate nohighlight">\(f(\cdot, t): \mathbb{R}_+ \rightarrow \mathbb{R}^n, \forall t\)</span> is <strong>Lipschitz continuous</strong> then there <strong>exists a unique</strong> function of time <span class="math notranslate nohighlight">\(\phi(\cdot):\mathbb{R}_+\rightarrow \mathbb{R}^n\)</span> which is differentiable (<span class="math notranslate nohighlight">\(C^1\)</span>) almost everywhere, <span class="math notranslate nohighlight">\(\phi(t_0) = x_0\)</span> and <span class="math notranslate nohighlight">\(\dot{\phi(t)} = f(\phi(t), t), \forall t \in [t_0, t_1] \backslash D\)</span>, with <span class="math notranslate nohighlight">\(D\)</span> a set of all points that <span class="math notranslate nohighlight">\(f\)</span> is not continuous in time.</p>
+<div class="note admonition">
+<p class="admonition-title">TL;DR</p>
+<p>Unique solution with respect to the initial condition exists if <span class="math notranslate nohighlight">\(f\)</span> is</p>
+<ul class="simple">
+<li><p>piecewise continuous function of time, and</p></li>
+<li><p>Lipschitz continuous function of <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="continuity-c-0">
+<h2><a class="toc-backref" href="#id2">Continuity (<span class="math notranslate nohighlight">\(C^0\)</span>)</a><a class="headerlink" href="#continuity-c-0" title="Permalink to this headline">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Definition</p>
+<p>A function <span class="math notranslate nohighlight">\(f(\cdot)\)</span> is continuous if <span class="math notranslate nohighlight">\(\forall \epsilon &gt; 0 \; \exists \delta &gt; 0 \; \text{s.t if}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+||x_1 - x_2|| &lt; \delta \quad \text{then} \quad ||f(x_1) - f(x_2)|| &lt; \epsilon
+\]</div>
+</div>
+<p>The order of <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(\epsilon\)</span> matters here. From the definition it means that <strong>if a function is continuous, then no matter how small the change in <span class="math notranslate nohighlight">\(f\)</span> is, we can always find a bound for the change in <span class="math notranslate nohighlight">\(x\)</span></strong>. We also see that the definition uses norm notation, meaning that <span class="math notranslate nohighlight">\(f\)</span> is a function between <a class="reference internal" href="../chap2-vector-matrix-operation/07-norms-eng.html"><span class="doc std std-doc">normed vector space</span></a>, and the norm used here is any norm defined appropriately in the normed vector space. Then from this, there is another way for us to think about the definition of continuity: <strong>if there are two points in the domain and <span class="math notranslate nohighlight">\(f\)</span> acting on these points, if their distance is small, then if the function is continuous, then the distance being small will be maintained in the range, i.e. <span class="math notranslate nohighlight">\(f(x_1), f(x_2)\)</span> will be close together</strong>.</p>
+</div>
+<div class="section" id="piecewise-continuity-pc">
+<h2><a class="toc-backref" href="#id3">Piecewise continuity (<span class="math notranslate nohighlight">\(PC\)</span>)</a><a class="headerlink" href="#piecewise-continuity-pc" title="Permalink to this headline">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Definition</p>
+<p>A function is <span class="math notranslate nohighlight">\(PC\)</span> if <span class="math notranslate nohighlight">\(f(x, \cdot): \mathbb{R}_+ \rightarrow \mathbb{R}^n\)</span> is <span class="math notranslate nohighlight">\(C^0\)</span> except at points of discontinuity, and there can only be <strong>finitely</strong> many of these points in any compact (closed and bounded) interval of time.</p>
+</div>
+</div>
+<div class="section" id="lipschitz-continuity-lc">
+<h2><a class="toc-backref" href="#id4">Lipschitz continuity (<span class="math notranslate nohighlight">\(LC\)</span>)</a><a class="headerlink" href="#lipschitz-continuity-lc" title="Permalink to this headline">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Definition</p>
+<p><span class="math notranslate nohighlight">\(f(\cdot, t): \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span> is Lipschitz continuous (LC) for all time in relevant interval if there exists a PC function <span class="math notranslate nohighlight">\(K(\cdot): \mathbb{R}_+ \rightarrow \mathbb{R}_+\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[
+||f(x_1) - f(x_2)|| \le K(t)||x_1 - x_2||
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(x_1, x_2 \in \mathbb{R}^n\)</span>, we say the function is globally Lipschitz continuous.</p>
+<p>The inequality is called the <strong>Lipschitz inequality</strong>, the function <span class="math notranslate nohighlight">\(K(\cdot)\)</span> is called the <strong>Lipschitz function</strong>.</p>
+</div>
+</div>
+<div class="section" id="relations-between-different-types-of-continuity">
+<h2><a class="toc-backref" href="#id5">Relations between different types of continuity</a><a class="headerlink" href="#relations-between-different-types-of-continuity" title="Permalink to this headline">#</a></h2>
+<p>From the definitions, we can see that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(LC \rightarrow C^0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C^0 \not\rightarrow LC\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(LC\)</span> is a stricter condition than <span class="math notranslate nohighlight">\(C^0\)</span>.</p>
+</div>
+<div class="section" id="candidate-lipschitz-function-k-cdot">
+<h2><a class="toc-backref" href="#id6">Candidate Lipschitz function <span class="math notranslate nohighlight">\(K(\cdot)\)</span></a><a class="headerlink" href="#candidate-lipschitz-function-k-cdot" title="Permalink to this headline">#</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Remark: Candidate Lipschitz function</p>
+<p>A candidate Lipschitz function <span class="math notranslate nohighlight">\(K(t)\)</span> (<em>candidate</em> means that it might not work) is the a norm on the Jacobian of <span class="math notranslate nohighlight">\(f\)</span>, i.e. <span class="math notranslate nohighlight">\(||D_1 f||\)</span> (partial derivative of <span class="math notranslate nohighlight">\(f\)</span> with respect to the first variable, in this case it is <span class="math notranslate nohighlight">\(x\)</span>).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+||D_1 f|| = ||\begin{bmatrix}
+    \frac{\partial f_1}{\partial x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \\ 
+    \dots &amp; \dots &amp; \dots \\
+    \frac{\partial f_n}{\partial x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n}
+\end{bmatrix}||
+\end{split}\]</div>
+</div>
+<p>This is true because of the <strong>mean value theorem</strong>, which states that:</p>
+<div class="math notranslate nohighlight">
+\[
+||f(x_1) - f(x_2)|| \le ||Df||_i ||x_1 - x_2||
+\]</div>
+<p>Moreover, <span class="math notranslate nohighlight">\(||Df||_i\)</span> is induced norm, so you can actually choose strategically what to use here to give you the best possible candidate Lipschitz function. <strong>For example</strong>, you can choose a norm that does not depend on <span class="math notranslate nohighlight">\(x\)</span>, then the Lipschitz function will be valid for all <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chap3-dynamical-systems"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00-intro-eng.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 3: Dynamical Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="14-Bellman-Gronwall-lemma-eng.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bellman-Gronwall lemma</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-theorem">Fundamental theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuity-c-0">Continuity (<span class="math notranslate nohighlight">\(C^0\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piecewise-continuity-pc">Piecewise continuity (<span class="math notranslate nohighlight">\(PC\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lipschitz-continuity-lc">Lipschitz continuity (<span class="math notranslate nohighlight">\(LC\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relations-between-different-types-of-continuity">Relations between different types of continuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#candidate-lipschitz-function-k-cdot">Candidate Lipschitz function <span class="math notranslate nohighlight">\(K(\cdot)\)</span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duy P. Nguyen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

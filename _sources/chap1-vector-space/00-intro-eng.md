@@ -1,0 +1,2 @@
+# Chapter 1: Vector Space
+This chapter discusses fucntions, fields and vector spaces, together with basic operations within vector spaces and their properties that lay an important foundation for linear system theory. The topic aims to go through things from the ground up, and requires no pre-requisite from the readers, except for basic calculus.
